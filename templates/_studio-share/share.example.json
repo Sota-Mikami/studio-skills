@@ -1,0 +1,26 @@
+{
+  "_README": "このファイルを share.json にコピーして編集する。汎用シェル(index/app/style/marked)は触らず、プロジェクト差分は theme と list だけ。",
+
+  "title": "施策タイトル（パンくずの現在地・ブラウザのページタイトルになる）",
+  "author": "Your Name",
+  "updatedAt": "YYYY-MM-DD",
+
+  "_passwordHash": "内部共有を URL 直アクセスから守るゲート。共有パスワードの sha256 を入れる（生成例: printf '%s' 'yourpassword' | shasum -a 256）。省略すると誰でも閲覧可。一致でローカルにキャッシュ。※クライアント側のソフト保護なので機微情報には使わない。",
+  "passwordHash": "<sha256-of-your-password>",
+
+  "_list": "プロトタイプ一覧ページへ戻るパンくず。一覧が無いプロジェクトは list ごと削除すれば、タイトルのみで成立する。",
+  "list": { "label": "プロトタイプ一覧", "url": "https://<このプロジェクトの一覧ページ>/" },
+
+  "_theme": "プロジェクトのブランド色。リポの design tokens から拾う。未指定なら style.css の既定（青）。",
+  "theme": { "accent": "#09B5BA", "accentStrong": "#056D70", "accentSoft": "#E4F7F7" },
+  "_theme_examples": {
+    "teal":   { "accent": "#09B5BA", "accentStrong": "#056D70", "accentSoft": "#E4F7F7" },
+    "orange": { "accent": "#FF8900", "accentStrong": "#C76A00", "accentSoft": "#FFF3E6" }
+  },
+
+  "_tabs": "出すタブ。type=markdown は整形＋目次表示、type=html は iframe 隔離（自分の header/sidenav を持つプロト/実画面スナップショットを崩さず載せる）。issue ごとに増減自由。",
+  "tabs": [
+    { "id": "spec",  "label": "Spec",        "type": "markdown", "src": "content/spec.md" },
+    { "id": "proto", "label": "プロトタイプ", "type": "html",     "src": "content/screen.html" }
+  ]
+}

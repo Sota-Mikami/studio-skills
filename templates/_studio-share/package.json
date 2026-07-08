@@ -1,0 +1,9 @@
+{
+  "name": "studio-share",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Studio share タブシェル（静的・ビルドは out/ へコピーのみ。deploy.sh 互換）",
+  "scripts": {
+    "build": "rm -rf out && mkdir -p out && cp index.html app.js style.css marked.min.js share.json out/ && cp -r content out/"
+  }
+}
