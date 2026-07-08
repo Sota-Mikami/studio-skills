@@ -53,5 +53,7 @@ printf '%s' 'yourpassword' | shasum -a 256
 | `tabs` | ✓ | `[{id,label,type:"markdown"|"html",src}]` を順番に表示 |
 
 ### テーマ例
-- teal: `{ "accent":"#09B5BA", "accentStrong":"#056D70", "accentSoft":"#E4F7F7" }`
-- orange: `{ "accent":"#FF8900", "accentStrong":"#C76A00", "accentSoft":"#FFF3E6" }`
+- blue: `{ "accent":"#2563EB", "accentStrong":"#1E40AF", "accentSoft":"#EFF3FF" }`
+- green: `{ "accent":"#059669", "accentStrong":"#065F46", "accentSoft":"#ECFDF5" }`
+
+実際の値は**あなたのプロジェクトの design tokens から拾って**入れてください。

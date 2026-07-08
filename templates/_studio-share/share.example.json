@@ -11,11 +11,11 @@
   "_list": "プロトタイプ一覧ページへ戻るパンくず。一覧が無いプロジェクトは list ごと削除すれば、タイトルのみで成立する。",
   "list": { "label": "プロトタイプ一覧", "url": "https://<このプロジェクトの一覧ページ>/" },
 
-  "_theme": "プロジェクトのブランド色。リポの design tokens から拾う。未指定なら style.css の既定（青）。",
-  "theme": { "accent": "#09B5BA", "accentStrong": "#056D70", "accentSoft": "#E4F7F7" },
+  "_theme": "プロジェクトのブランド色。あなたの repo の design tokens から拾って差し替える。未指定なら style.css の既定（青）。",
+  "theme": { "accent": "#2563EB", "accentStrong": "#1E40AF", "accentSoft": "#EFF3FF" },
   "_theme_examples": {
-    "teal":   { "accent": "#09B5BA", "accentStrong": "#056D70", "accentSoft": "#E4F7F7" },
-    "orange": { "accent": "#FF8900", "accentStrong": "#C76A00", "accentSoft": "#FFF3E6" }
+    "blue":  { "accent": "#2563EB", "accentStrong": "#1E40AF", "accentSoft": "#EFF3FF" },
+    "green": { "accent": "#059669", "accentStrong": "#065F46", "accentSoft": "#ECFDF5" }
   },
 
   "_tabs": "出すタブ。type=markdown は整形＋目次表示、type=html は iframe 隔離（自分の header/sidenav を持つプロト/実画面スナップショットを崩さず載せる）。issue ごとに増減自由。",

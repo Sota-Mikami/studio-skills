@@ -23,10 +23,14 @@
 
 ## 前提
 
-- [Claude Code](https://claude.com/claude-code)
+- **AI コーディングエージェント** — リファレンス実装は [Claude Code](https://claude.com/claude-code)（動作確認済み）。**他のエージェントでも使えます** → [他の AI エージェントで使う](#他の-ai-エージェントで使う)
 - git worktree ベースで施策ごとに作業場を切る運用（[Orca](https://www.onorca.dev/) が使いやすいです）
 - **Web プロジェクト**（Next.js / Remix 等で動作確認。iOS/Android は現状対象外）
 - 既存プロダクトのコードが（ある程度）整っていること — 「コードが正本」方式の前提です
+
+あると便利（任意）:
+- `gh` CLI — issue/PR から施策タイトルを自動で引き継ぐのに使います
+- ブラウザ操作ツール（Claude Code なら Claude in Chrome）— `/studio:ui-test` の自動検証用。無ければ手動確認で代替できます
 
 ## セットアップ（4ステップ）
 
@@ -46,7 +50,14 @@ cd <your-repo>
 echo ".studio/" >> .git/info/exclude
 ```
 
-あとは施策用の worktree（またはブランチ）で Claude Code を開き、`/studio:issue` を実行するだけです。
+### はじめて回すとき（1本目の流れ）
+
+1. 施策用の worktree（またはブランチ）を作る — Orca なら issue を作るだけ
+2. その worktree でエージェントを開き、`/studio:issue` を実行（**引数なしでOK** — ブランチ名や紐づく issue から施策を推定します）
+3. 質問に答える（P1）→ HTML の案から選ぶ（P3）→ localhost で実装を確認（P4）
+4. 「シェアして」と言う（P6）— 共有先のホスティング（S3 / GitHub Pages / Vercel 等）の**初回設定だけは環境ごとに違う**ので、そのままエージェントに相談してください
+
+つまずいたら: dev サーバが「起動しているのに 500/404」→ `/studio:doctor`。
 
 ### 最小構成で始める
 
@@ -83,6 +94,19 @@ echo ".studio/" >> .git/info/exclude
 仕様（markdown・目次つき）／デザイン案（HTML）／触れる実装（iframe）を**タブで切り替える1枚の共有ページ**にする軽量シェルです。プロジェクト差分は `share.json`（テーマ色・一覧リンク・タブ構成）だけ。詳細は [`templates/_studio-share/README.md`](templates/_studio-share/README.md)。
 
 共有先のホスティング（S3 / GitHub Pages / Vercel 等）の設定はプロジェクトごとに違うので、お使いの AI に聞いてください（本当にそれで組めます）。
+
+## 他の AI エージェントで使う
+
+skill の実体は**素の markdown（プロンプト＋手順書）**なので、Claude Code 以外のエージェント（Codex / Cursor / Gemini CLI 等）でも使えます。読み替えは4点だけ:
+
+| Claude Code の要素 | 他エージェントでの読み替え |
+|---|---|
+| `~/.claude/commands/studio/*.md`（スラッシュコマンド化） | エージェントのカスタムコマンド/プロンプト置き場に配置（例: Codex は custom prompts、Cursor は Rules）。仕組みが無ければ「`commands/studio/issue.md` を読んで、その通りに進めて」と指示するだけでも動きます |
+| `$ARGUMENTS`（コマンド引数の記法） | エージェントの引数記法に合わせる。引数なし運用（ブランチ名から施策を推定）ならそのままでOK |
+| `AskUserQuestion`（選択肢で答えられる質問UI） | 「番号付き選択肢のテキスト質問」に読み替え。skill が期待している体験は**"選ぶだけで答えられる"こと**なので、そこが保てれば形式は自由 |
+| `~/.claude/studio/DOCTRINE.md` 等のパス参照 | エージェントが読める任意の場所に置き、skill 内のパスを一括置換 |
+
+※ 動作確認済みの組み合わせは Claude Code（＋Orca）のみです。他エージェントでの動作報告・改善 PR は歓迎します。
 
 ## 現在地（正直な注記）
 
