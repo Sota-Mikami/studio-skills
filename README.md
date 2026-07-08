@@ -45,9 +45,10 @@ cp doctrine/DOCTRINE.md ~/.claude/studio/DOCTRINE.md
 # 3. 共有テンプレ（タブシェル）を配置
 cp -r templates/_studio-share ~/.claude/studio/templates/_studio-share
 
-# 4. 対象 repo で、作業フォルダ .studio/ を gitignore に足す（repo を汚さない）
+# 4. 対象 repo で、作業フォルダ .studio/ をローカルの gitignore に足す（repo を汚さない）
+#    ※ worktree の中で実行してもOKな書き方。repo ごとに1回でOK（全 worktree に効く）
 cd <your-repo>
-echo ".studio/" >> .git/info/exclude
+echo ".studio/" >> "$(git rev-parse --git-path info/exclude)"
 ```
 
 ### はじめて回すとき（1本目の流れ）
