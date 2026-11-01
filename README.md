@@ -1,5 +1,8 @@
 # studio-skills
 
+> **Archived (2026-11-01).** This repository is no longer maintained and is kept public for reference only.
+> **アーカイブ済み（2026-11-01）**：このリポジトリは更新していません。参考のために公開したままにしています。
+
 **Claude Code の skill だけで「デザインループ」を回す**ための skill 群とドクトリンです。
 
 デザイン施策（issue）1つを、**1コマンドで**次のループに乗せます:
